@@ -37,7 +37,11 @@ struct film{
 int main(int argc, char** argv){
 	
 	int sortby; //integer holding value corresponding to what the files will be sorted by
+	printf("the first arg is %s\n",argv[0]);
+	printf("the second arg is %s\n", argv[1]);
+	printf("the third arg is %s\n", argv[3]);
 	
+	return 0;
 
 }
 
