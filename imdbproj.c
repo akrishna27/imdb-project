@@ -30,9 +30,10 @@ struct film{
 		double imdb_score;
 		double aspect_ration;
 		int movie_facebook_likes;
-};
+}film;
 
 
 int main(int argc, char** argv){
 
 }
+
