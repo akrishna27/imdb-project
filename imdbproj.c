@@ -117,8 +117,25 @@ int main(int argc, char** argv){
 		printf("ERROR: Invalid Category For Sorting\n");
 		return 1;
 	}
+	char* curr=(char*)malloc(sizeof(char)*500);	//500 determined to be a good ceiling for string length for a single line
 	//use strtok to read thru the file, checking for leading spaces for removal or opening quotations to signify a title which can contain a comma
+	int assignto=0;	//variable to determine where values are assigned to	
+	
+	while(scanf("%s\n",curr)!=EOF){		//gets one line of input to parse through
+		
+		assignto++;
+		char* val=strtok(curr,";");
+		
+		while (val!=NULL){
+			
+		}
 
+	}
+
+
+
+//	printf("reading done\n");
+	
 	return 0;
 
 }
