@@ -125,7 +125,8 @@ int main(int argc, char** argv){
 	int assignto=0;	//variable to determine where values are assigned to	
 	int loop=0;
 	while(scanf("%s\n",curr)!=EOF){		//gets one line of input to parse through
-		film* x=(film*)malloc(sizeof(film));	//current film record being made
+		struct film* x=NULL;
+		x=(struct film*)malloc(sizeof(film));	//current film record being made
 		loop++;
 		assignto++;
 		
@@ -195,7 +196,7 @@ int main(int argc, char** argv){
 					x->movie_facebook_likes=0;
 				}
 				continue;		//jump to next token
-			}else if(assignto==3|assignto==4|assignto==5|assignto==6|assignto==8|assignto==9|assignto==13|assignto==14|assignto==16|assignto==19|assignto==23|assignto==24|assignto==25|assignto==28){	//convert to int
+			}else if((assignto==3)|(assignto==4)|(assignto==5)|(assignto==6)|(assignto==8)|(assignto==9)|(assignto==13)|(assignto==14)|(assignto==16)|(assignto==19)|(assignto==23)|(assignto==24)|(assignto==25)|(assignto==28)){	//convert to int
 				int numval=atoi(val);
 				if(assignto==3){
 					x->num_critic_for_reviews=numval;
@@ -228,7 +229,7 @@ int main(int argc, char** argv){
 				}	
 				continue;	//jump to next token
 										
-			}else if(assignto==26|assignto==27){		//convert to double
+			}else if((assignto==26)|(assignto==27)){	//convert to double
 				if(assignto==26){
 					x->imdb_score=atof(val);
 				}else{
@@ -239,7 +240,7 @@ int main(int argc, char** argv){
 			
 			if(val[0]=='"'){	//opening quotation, check for closing quote
 				while(val[strlen(val)-1]!='"'){	//lacks a closing quote
-					strcat(val,strtok(NULL,",");	//concatenates next token to current token
+					strcat(val,strtok(NULL,","));	//concatenates next token to current token
 				}
 			}
 				//enter values if token is a string
@@ -276,7 +277,7 @@ int main(int argc, char** argv){
 
 	}
 
-
+//sort the array here gov'na (o~<*)\b
 
 //	printf("reading done\n");
 	
