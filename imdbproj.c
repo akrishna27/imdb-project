@@ -120,7 +120,7 @@ int main(int argc, char** argv){
 	char* curr=(char*)malloc(sizeof(char)*500);	//500 determined to be a good ceiling for string length for a single line
 	
 	
-	//use strtok to read thru the file, checking for leading spaces for removal or opening quotations to signify a title which can contain a comma
+	//use strtok to read thru the file, checking for opening quotations to signify a title which can contain a comma
 	
 	int assignto=0;	//variable to determine where values are assigned to	
 	int loop=0;
@@ -194,7 +194,7 @@ int main(int argc, char** argv){
 				}else if(assignto==28){
 					x->movie_facebook_likes=0;
 				}
-				continue;
+				continue;		//jump to next token
 			}else if(assignto==3|assignto==4|assignto==5|assignto==6|assignto==8|assignto==9|assignto==13|assignto==14|assignto==16|assignto==19|assignto==23|assignto==24|assignto==25|assignto==28){	//convert to int
 				int numval=atoi(val);
 				if(assignto==3){
@@ -226,7 +226,7 @@ int main(int argc, char** argv){
 				}else{
 					x->movie_facebook_likes=numval;
 				}	
-				
+				continue;	//jump to next token
 										
 			}else if(assignto==26|assignto==27){		//convert to double
 				if(assignto==26){
@@ -234,14 +234,45 @@ int main(int argc, char** argv){
 				}else{
 					x->aspect_ratio=atof(val);
 				}
+				continue;	//jump to next token
 			}
-			if(val[0]=='"'){	//opening quotation, check for closing quote
-				
-			}
-			//add x to array
 			
-			val=strtok(NULL,",");
+			if(val[0]=='"'){	//opening quotation, check for closing quote
+				while(val[strlen(val)-1]!='"'){	//lacks a closing quote
+					strcat(val,strtok(NULL,",");	//concatenates next token to current token
+				}
+			}
+				//enter values if token is a string
+				if(assignto==1){
+					x->color=val;
+				}else if(assignto==2){
+					x->director_name=val;
+				}else if(assignto==7){
+					x->actor_2_name=val;
+				}else if(assignto==10){
+					x->genres=val;
+				}else if(assignto==11){
+					x->actor_1_name=val;
+				}else if(assignto==12){
+					x->movie_title=val;
+				}else if(assignto==15){
+					x->actor_3_name=val;
+				}else if(assignto==17){
+					x->plot_keywords=val;
+				}else if(assignto==18){
+					x->movie_imdb_link=val;
+				}else if(assignto==20){
+					x->language=val;
+				}else if(assignto==21){
+					x->country=val;
+				}else if(assignto==22){
+					x->content_rating=val;
+				}	
+			
+			val=strtok(NULL,",");	//move on to next token
 		}
+		
+		//add x to the array
 
 	}
 
