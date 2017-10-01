@@ -124,12 +124,12 @@ int main(int argc, char** argv){
 	
 	int assignto=0;	//variable to determine where values are assigned to	
 	int loop=0;
+	struct film* x=NULL;
 	while(scanf("%s\n",curr)!=EOF){		//gets one line of input to parse through
-		struct film* x=NULL;
+
 		x=(struct film*)malloc(sizeof(film));	//current film record being made
 		loop++;
 		assignto++;
-		
 		char* val=strtok(curr,",");
 		
 		if(loop==1){	//category line will be skipped
@@ -137,6 +137,9 @@ int main(int argc, char** argv){
 		}
 		
 		while (val!=NULL){
+			
+			printf("current val is %s\n",val);
+			
 			if(strcmp(val,"")==0){	//empty value
 				if(assignto==1){
 					x->color="";
@@ -195,6 +198,7 @@ int main(int argc, char** argv){
 				}else if(assignto==28){
 					x->movie_facebook_likes=0;
 				}
+				val=strtok(NULL,",");	//move on to next token
 				continue;		//jump to next token
 			}else if((assignto==3)|(assignto==4)|(assignto==5)|(assignto==6)|(assignto==8)|(assignto==9)|(assignto==13)|(assignto==14)|(assignto==16)|(assignto==19)|(assignto==23)|(assignto==24)|(assignto==25)|(assignto==28)){	//convert to int
 				int numval=atoi(val);
@@ -227,14 +231,16 @@ int main(int argc, char** argv){
 				}else{
 					x->movie_facebook_likes=numval;
 				}	
+				val=strtok(NULL,",");	//move on to next token
 				continue;	//jump to next token
 										
-			}else if((assignto==26)|(assignto==27)){	//convert to double
+			}else if((assignto==26)|(assignto==27)){		//convert to double
 				if(assignto==26){
 					x->imdb_score=atof(val);
 				}else{
 					x->aspect_ratio=atof(val);
 				}
+				val=strtok(NULL,",");	//move on to next token
 				continue;	//jump to next token
 			}
 			
@@ -270,18 +276,23 @@ int main(int argc, char** argv){
 					x->content_rating=val;
 				}	
 			
+			if(sortby==28){		//x is a complete film to add to the array
+				//add x
+				assignto=0;
+			}
+			
+			
 			val=strtok(NULL,",");	//move on to next token
 		}
-		
+		//printf("done reading one line\n");
 		//add x to the array
 
 	}
 
 //sort the array here gov'na (o~<*)\b
 
-//	printf("reading done\n");
+	printf("reading done\n");
 	
 	return 0;
 
 }
-
