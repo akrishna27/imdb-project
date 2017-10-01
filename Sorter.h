@@ -39,4 +39,7 @@ struct film{
 }film;
 
 //Suggestion: prototype a mergesort function
+film* mergesort(film* array, int size, int col);//pointer to unsorted array, size of array, column to sort by
 
+
+film* filmcpy(film* filmA, film* filmB);//copy a film struct function

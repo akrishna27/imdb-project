@@ -10,66 +10,15 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 	 //allocate 2 arrays
 	 film* arrayA = (film*) malloc(sizeof(film)*mid);
 	 film* arrayB = film*) malloc(sizeof(film)*(size-mid));
+	 
 	 int i=0; int k=0;
+	 
 	 for(i=0; i<mid; i++){//loop for filling arrayA, mid is size of A
-		 arrayA[i].color = strcpy(arrayA[i].color, array[i].color);
-		 arrayA[i].director_name = strcpy(arrayA[i].director_name, array[i].director_name);
-		 arrayA[i].num_critic_for_reviews = array[i].num_critic_for_reviews;
-		 arrayA[i].duration = array[i].duration;
-		 arrayA[i].director_facebook_likes = array[i].director_facebook_likes;
-		 arrayA[i].actor_3_facebook_likes = array[i].actor_3_facebook_likes;
-		 arrayA[i].actor_2_name = strcpy(arrayA[i].actor_2_name, array[i].actor_2_name);
-		 arrayA[i].actor_1_facebook_likes = array[i].actor_1_facebook_likes;
-		 arrayA[i].gross = array[i].gross;
-		 arrayA[i].genres = strcpy(arrayA[i].genres, array[i].genres);
-		 arrayA[i].actor_1_name = strcpy(arrayA[i].actor_1_name, array[i].actor_1_name);
-		 arrayA[i].movie_title = strcpy(arrayA[i].movie_title, array[i].movie_title);
-		 arrayA[i].num_voted_users = array[i].num_voted_users;
-		 arrayA[i].cast_total_facebook_likes = array[i].cast_total_facebook_likes;
-		 arrayA[i].actor_3_name = strcpy(arrayA[i].actor_3_name, array[i].actor_3_name);
-		 arrayA[i].facenumber_in_poster = array[i].facenumber_in_poster;
-		 arrayA[i].plot_keywords = strcpy(arrayA[i].plot_keywords, array[i].plot_keywords);
-		 arrayA[i].move_imdb_link = strcpy(arrayA[i].move_imdb_link, array[i].move_imdb_link);
-		 arrayA[i].num_user_for_reviews = array[i].num_user_for_reviews;
-		 arrayA[i].language = strcpy(arrayA[i].language, array[i].language);
-		 arrayA[i].country = strcpy(arrayA[i].country, array[i].country);
-		 arrayA[i].content_rating = strcpy(arrayA[i].content_rating, array[i].content_rating);
-		 arrayA[i].budget = array[i].budget;
-		 arrayA[i].title_year = array[i].title_year;
-		 arrayA[i].actor_2_facebook_likes = array[i].actor_2_facebook_likes;
-		 arrayA[i].imdb_score = array[i].imdb_score;
-		 arrayA[i].aspect_ratio = array[i].aspect_ratio;
-		 arrayA[i].movie_facebook_likes = array[i].movie_facebook_likes;
+		 arrayA[i] = filmcpy(array[i], arrayA[i]);
 	 }
 	 for(k=0; i<size; i++){//loop for filling arrayB, final k is size of B
-		 arrayB[k].color = strcpy(arrayB[k].color, array[i].color);
-		 arrayB[k].director_name = strcpy(arrayB[k].director_name, array[i].director_name);
-		 arrayB[k].num_critic_for_reviews = array[i].num_critic_for_reviews;
-		 arrayB[k].duration = array[i].duration;
-		 arrayB[k].director_facebook_likes = array[i].director_facebook_likes;
-		 arrayB[k].actor_3_facebook_likes = array[i].actor_3_facebook_likes;
-		 arrayB[k].actor_2_name = strcpy(arrayB[k].actor_2_name, array[i].actor_2_name);//
-		 arrayB[k].actor_1_facebook_likes = array[i].actor_1_facebook_likes;
-		 arrayB[k].gross = array[i].gross;
-		 arrayB[k].genres = strcpy(arrayB[k].genres, array[i].genres);//
-		 arrayB[k].actor_1_name = strcpy(arrayB[k].actor_1_name, array[i].actor_1_name);//
-		 arrayB[k].movie_title = strcpy(arrayB[k].movie_title, array[i].movie_title);//
-		 arrayB[k].num_voted_users = array[i].num_voted_users;
-		 arrayB[k].cast_total_facebook_likes = array[i].cast_total_facebook_likes;
-		 arrayB[k].actor_3_name = strcpy(arrayB[k].actor_3_name, array[i].actor_3_name);//
-		 arrayB[k].facenumber_in_poster = array[i].facenumber_in_poster;
-		 arrayB[k].plot_keywords = strcpy(arrayB[k].plot_keywords, array[i].plot_keywords);//
-		 arrayB[k].move_imdb_link = strcpy(arrayB[k].move_imdb_link, array[i].move_imdb_link);//
-		 arrayB[k].num_user_for_reviews = array[i].num_user_for_reviews;
-		 arrayB[k].language = strcpy(arrayB[k].language, array[i].language);//
-		 arrayB[k].country = strcpy(arrayB[k].country, array[i].country);//
-		 arrayB[k].content_rating = strcpy(arrayB[k].content_rating, array[i].content_rating);//
-		 arrayB[k].budget = array[i].budget;
-		 arrayB[k].title_year = array[i].title_year;
-		 arrayB[k].actor_2_facebook_likes = array[i].actor_2_facebook_likes;
-		 arrayB[k].imdb_score = array[i].imdb_score;
-		 arrayB[k].aspect_ratio = array[i].aspect_ratio;
-		 arrayB[k].movie_facebook_likes = array[i].movie_facebook_likes;
+		 
+		 arrayB[k] = filmcpy(array[i], arrayB[k]);
 		 
 		 k++;
 	 }
@@ -77,25 +26,64 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 	 arrayA = mergesort(arrayA, mid, col);
 	 arrayB = mergesort(arrayB, k, col);
 	 
-	 i=0; int j=0;
+	 i=0; int j=0; int a=0;
 	 while(i<mid && j<k){
 		 //depending on what column we're sorting by, do things
 		 if(col == 1 || col == 2 || col == 7 || col == 10 || col == 11 || col == 12 || col == 15 || col == 17 || col == 20 || col == 21 || col == 22){
 			 //sort by string, first being NULL
 			 switch(col){
 				 case(1):{
-					 if(strcmp(arrayA.color, arrayB.color) > 0){//arrayA's val is greater
-						 
+					 if(strcmp(arrayA[i].color, arrayB[j].color) > 0){//arrayA's val is greater
+						 array[a] = filmcpy(arrayB[j],array[a]);
+						 j++;
+						 break;
+					 }else{//arrayA's val is less or equal
+						 array[a] = filmcpy(arrayA[i],array[a]);
+						 i++;
+						 break;
 					 }
+				 }//end of case1
+				 case(2):{
+					 
 				 }
 			 }
 		 }else{
 			 //sort numerically
 		 }
-	 }
+		 a++;
+	 }//end of while loop
 	 
 }
 
 film* filmcpy(film* filmA, film* filmB){//copy film A to film B
-	//fill this in
+	filmB.color = strcpy(filmB.color, filmA.color);
+	 filmB.director_name = strcpy(filmB.director_name, filmA.director_name);
+	 filmB.num_critic_for_reviews = filmA.num_critic_for_reviews;
+	 filmB.duration = filmA.duration;
+	 filmB.director_facebook_likes = filmA.director_facebook_likes;
+	 filmB.actor_3_facebook_likes = filmA.actor_3_facebook_likes;
+	 filmB.actor_2_name = strcpy(filmB.actor_2_name, filmA.actor_2_name);
+	 filmB.actor_1_facebook_likes = filmA.actor_1_facebook_likes;
+	 filmB.gross = filmA.gross;
+	 filmB.genres = strcpy(filmB.genres, filmA.genres);
+	 filmB.actor_1_name = strcpy(filmB.actor_1_name, filmA.actor_1_name);
+	 filmB.movie_title = strcpy(filmB.movie_title, filmA.movie_title);
+	 filmB.num_voted_users = filmA.num_voted_users;
+	 filmB.cast_total_facebook_likes = filmA.cast_total_facebook_likes;
+	 filmB.actor_3_name = strcpy(filmB.actor_3_name, filmA.actor_3_name);
+	 filmB.facenumber_in_poster = filmA.facenumber_in_poster;
+	 filmB.plot_keywords = strcpy(filmB.plot_keywords, filmA.plot_keywords);
+	 filmB.move_imdb_link = strcpy(filmB.move_imdb_link, filmA.move_imdb_link);
+	 filmB.num_user_for_reviews = filmA.num_user_for_reviews;
+	 filmB.language = strcpy(filmB.language, filmA.language);
+	 filmB.country = strcpy(filmB.country, filmA.country);
+	 filmB.content_rating = strcpy(filmB.content_rating, filmA.content_rating);
+	 filmB.budget = filmA.budget;
+	 filmB.title_year = filmA.title_year;
+	 filmB.actor_2_facebook_likes = filmA.actor_2_facebook_likes;
+	 filmB.imdb_score = filmA.imdb_score;
+	 filmB.aspect_ratio = filmA.aspect_ratio;
+	 filmB.movie_facebook_likes = filmA.movie_facebook_likes;
+	 
+	 return filmB;
 }
