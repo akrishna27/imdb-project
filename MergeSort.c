@@ -468,34 +468,48 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 		 }
 	 }
 	 
+	 free_strings(arrayA, mid);
+	 free_strings(arrayB, k);
 	 free(arrayA);
 	 free(arrayB);
 	 return array;
 }
 
 film filmcpy(film filmA, film filmB){//copy film A to film B
-	filmB.color = strcpy(filmB.color, filmA.color);
-	filmB.director_name = strcpy(filmB.director_name, filmA.director_name);
+	filmB.color = (char*) malloc(sizeof(filmA.color)+1);
+	filmB.color = strcpy(filmB.color, filmA.color);//
+	filmB.director_name = (char*) malloc(sizeof(filmA.director_name)+1);
+	filmB.director_name = strcpy(filmB.director_name, filmA.director_name);//
 	filmB.num_critic_for_reviews = filmA.num_critic_for_reviews;
 	filmB.duration = filmA.duration;
 	filmB.director_facebook_likes = filmA.director_facebook_likes;
 	filmB.actor_3_facebook_likes = filmA.actor_3_facebook_likes;
-	filmB.actor_2_name = strcpy(filmB.actor_2_name, filmA.actor_2_name);
+	filmB.actor_2_name = (char*) malloc(sizeof(filmA.actor_2_name)+1);
+	filmB.actor_2_name = strcpy(filmB.actor_2_name, filmA.actor_2_name);//
 	filmB.actor_1_facebook_likes = filmA.actor_1_facebook_likes;
 	filmB.gross = filmA.gross;
-	filmB.genres = strcpy(filmB.genres, filmA.genres);
-	filmB.actor_1_name = strcpy(filmB.actor_1_name, filmA.actor_1_name);
-	filmB.movie_title = strcpy(filmB.movie_title, filmA.movie_title);
+	filmB.genres = (char*) malloc(sizeof(filmA.genres)+1);
+	filmB.genres = strcpy(filmB.genres, filmA.genres);//
+	filmB.actor_1_name = (char*) malloc(sizeof(filmA.actor_1_name)+1);
+	filmB.actor_1_name = strcpy(filmB.actor_1_name, filmA.actor_1_name);//
+	filmB.movie_title = (char*) malloc(sizeof(filmA.movie_title)+1);
+	filmB.movie_title = strcpy(filmB.movie_title, filmA.movie_title);//
 	filmB.num_voted_users = filmA.num_voted_users;
 	filmB.cast_total_facebook_likes = filmA.cast_total_facebook_likes;
-	filmB.actor_3_name = strcpy(filmB.actor_3_name, filmA.actor_3_name);
+	filmB.actor_3_name = (char*) malloc(sizeof(filmA.actor_3_name)+1);
+	filmB.actor_3_name = strcpy(filmB.actor_3_name, filmA.actor_3_name);//
 	filmB.facenumber_in_poster = filmA.facenumber_in_poster;
-	filmB.plot_keywords = strcpy(filmB.plot_keywords, filmA.plot_keywords);
-	filmB.move_imdb_link = strcpy(filmB.move_imdb_link, filmA.move_imdb_link);
+	filmB.plot_keywords = (char*) malloc(sizeof(filmA.plot_keywords)+1);
+	filmB.plot_keywords = strcpy(filmB.plot_keywords, filmA.plot_keywords);//
+	filmB.move_imdb_link = (char*) malloc(sizeof(filmA.move_imdb_link)+1);
+	filmB.move_imdb_link = strcpy(filmB.move_imdb_link, filmA.move_imdb_link);//
 	filmB.num_user_for_reviews = filmA.num_user_for_reviews;
-	filmB.language = strcpy(filmB.language, filmA.language);
-	filmB.country = strcpy(filmB.country, filmA.country);
-	filmB.content_rating = strcpy(filmB.content_rating, filmA.content_rating);
+	filmB.language = (char*) malloc(sizeof(filmA.language)+1);
+	filmB.language = strcpy(filmB.language, filmA.language);//
+	filmB.country = (char*) malloc(sizeof(filmA.country)+1);
+	filmB.country = strcpy(filmB.country, filmA.country);//
+	filmB.content_rating = (char*) malloc(sizeof(filmA.content_rating)+1);
+	filmB.content_rating = strcpy(filmB.content_rating, filmA.content_rating);//
 	filmB.budget = filmA.budget;
 	filmB.title_year = filmA.title_year;
 	filmB.actor_2_facebook_likes = filmA.actor_2_facebook_likes;
@@ -504,4 +518,22 @@ film filmcpy(film filmA, film filmB){//copy film A to film B
 	filmB.movie_facebook_likes = filmA.movie_facebook_likes;
 	 
 	return filmB;
+}
+
+void free_strings(film* array, int len){
+	int i=0;
+	for (i=0; i<len; i++){
+		free(array[i].color);
+		free(array[i].director_name);
+		free(array[i].actor_2_name);
+		free(array[i].genres);
+		free(array[i].actor_1_name);
+		free(array[i].movie_title);
+		free(array[i].actor_3_name);
+		free(array[i].plot_keywords);
+		free(array[i].move_imdb_link);
+		free(array[i].language);
+		free(array[i].country);
+		free(array[i].content_rating);
+	}
 }
