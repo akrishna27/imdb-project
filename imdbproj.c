@@ -20,7 +20,7 @@ struct film{
 		char* actor_3_name;			//15
 		int facenumber_in_poster;	//16
 		char* plot_keywords;		//17
-		char* move_imdb_link;		//18
+		char* movie_imdb_link;		//18
 		int num_user_for_reviews;	//19
 		char* language;				//20
 		char* country;				//21
@@ -90,7 +90,7 @@ int main(int argc, char** argv){
 		sortby=16;
 	}else if (strcmp("plot_keywords",argv[2])==0){
 		sortby=17;
-	}else if (strcmp("move_imdb_link",argv[2])==0){
+	}else if (strcmp("movie_imdb_link",argv[2])==0){
 		sortby=18;
 	}else if (strcmp("num_user_for_reviews",argv[2])==0){
 		sortby=19;
@@ -118,16 +118,129 @@ int main(int argc, char** argv){
 		return 1;
 	}
 	char* curr=(char*)malloc(sizeof(char)*500);	//500 determined to be a good ceiling for string length for a single line
-	//use strtok to read thru the file, checking for leading spaces for removal or opening quotations to signify a title which can contain a comma
-	int assignto=0;	//variable to determine where values are assigned to	
 	
+	
+	//use strtok to read thru the file, checking for leading spaces for removal or opening quotations to signify a title which can contain a comma
+	
+	int assignto=0;	//variable to determine where values are assigned to	
+	int loop=0;
 	while(scanf("%s\n",curr)!=EOF){		//gets one line of input to parse through
-		
+		film* x=(film*)malloc(sizeof(film));	//current film record being made
+		loop++;
 		assignto++;
-		char* val=strtok(curr,";");
+		
+		char* val=strtok(curr,",");
+		
+		if(loop==1){	//category line will be skipped
+				continue;
+		}
 		
 		while (val!=NULL){
+			if(strcmp(val,"")==0){	//empty value
+				if(assignto==1){
+					x->color="";
+				}else if(assignto==2){
+					x->director_name="";
+				}else if(assignto==3){
+					x->num_critic_for_reviews=0;
+				}else if(assignto==4){
+					x->duration=0;
+				}else if(assignto==5){
+					x->director_facebook_likes=0;
+				}else if(assignto==6){
+					x->actor_3_facebook_likes=0;
+				}else if(assignto==7){
+					x->actor_2_name="";
+				}else if(assignto==8){
+					x->actor_1_facebook_likes=0;
+				}else if(assignto==9){
+					x->gross=0;
+				}else if(assignto==10){
+					x->genres="";
+				}else if(assignto==11){
+					x->actor_1_name="";
+				}else if(assignto==12){
+					x->movie_title="";
+				}else if(assignto==13){
+					x->num_voted_users=0;
+				}else if(assignto==14){
+					x->cast_total_facebook_likes=0;
+				}else if(assignto==15){
+					x->actor_3_name="";
+				}else if(assignto==16){
+					x->facenumber_in_poster=0;
+				}else if(assignto==17){
+					x->plot_keywords="";
+				}else if(assignto==18){
+					x->movie_imdb_link="";
+				}else if(assignto==19){
+					x->num_user_for_reviews=0;
+				}else if(assignto==20){
+					x->language="";
+				}else if(assignto==21){
+					x->country="";
+				}else if(assignto==22){
+					x->content_rating="";
+				}else if(assignto==23){
+					x->budget=0;
+				}else if(assignto==24){
+					x->title_year=0;
+				}else if(assignto==25){
+					x->actor_2_facebook_likes=0;
+				}else if(assignto==26){
+					x->imdb_score=0;
+				}else if(assignto==27){
+					x->aspect_ratio=0;
+				}else if(assignto==28){
+					x->movie_facebook_likes=0;
+				}
+				continue;
+			}else if(assignto==3|assignto==4|assignto==5|assignto==6|assignto==8|assignto==9|assignto==13|assignto==14|assignto==16|assignto==19|assignto==23|assignto==24|assignto==25|assignto==28){	//convert to int
+				int numval=atoi(val);
+				if(assignto==3){
+					x->num_critic_for_reviews=numval;
+				}else if(assignto==4){
+					x->duration=numval;
+				}else if(assignto==5){
+					x->director_facebook_likes=numval;
+				}else if(assignto==6){
+					x->actor_3_facebook_likes=numval;
+				}else if(assignto==8){
+					x->actor_1_facebook_likes=numval;
+				}else if(assignto==9){
+					x->gross=numval;
+				}else if(assignto==13){
+					x->num_voted_users=numval;
+				}else if(assignto==14){	
+					x->cast_total_facebook_likes=numval;
+				}else if(assignto==16){
+					x->facenumber_in_poster=numval;
+				}else if(assignto==19){	
+					x->num_user_for_reviews=numval;
+				}else if(assignto==23){
+					x->budget=numval;
+				}else if(assignto==24){
+					x->title_year=numval;
+				}else if(assignto==25){
+					x->actor_2_facebook_likes=numval;
+				}else{
+					x->movie_facebook_likes=numval;
+				}	
+				
+										
+			}else if(assignto==26|assignto==27){		//convert to double
+				if(assignto==26){
+					x->imdb_score=atof(val);
+				}else{
+					x->aspect_ratio=atof(val);
+				}
+			}
+			if(val[0]=='"'){	//opening quotation, check for closing quote
+				
+			}
+			//add x to array
 			
+			val=strtok(NULL,",");
 		}
 
 	}
