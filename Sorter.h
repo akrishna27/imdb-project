@@ -7,6 +7,7 @@
 ******/
 
 //Suggestion: define a struct that mirrors a record (row) of the data set
+
 struct film{
 		char* color;
 		char* director_name;
@@ -36,10 +37,11 @@ struct film{
 		double imdb_score;
 		double aspect_ratio;
 		int movie_facebook_likes;
-}film;
+};
+typedef struct film film;
 
 //Suggestion: prototype a mergesort function
 film* mergesort(film* array, int size, int col);//pointer to unsorted array, size of array, column to sort by
 
 
-film* filmcpy(film* filmA, film* filmB);//copy a film struct function
+film filmcpy(film filmA, film filmB);//copy a film struct function

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Sorter.h"
+#include <string.h>
 
 film* mergesort(film* array, int size, int col){//pointer to unsorted array, size of array, column to sort by
 	if(size == 1){
@@ -9,7 +10,7 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 	 int mid = size>>1;//find midpoint
 	 //allocate 2 arrays
 	 film* arrayA = (film*) malloc(sizeof(film)*mid);
-	 film* arrayB = film*) malloc(sizeof(film)*(size-mid));
+	 film* arrayB = (film*) malloc(sizeof(film)*(size-mid));
 	 
 	 int i=0; int k=0;
 	 
@@ -472,35 +473,35 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 	 return array;
 }
 
-film* filmcpy(film* filmA, film* filmB){//copy film A to film B
+film filmcpy(film filmA, film filmB){//copy film A to film B
 	filmB.color = strcpy(filmB.color, filmA.color);
-	 filmB.director_name = strcpy(filmB.director_name, filmA.director_name);
-	 filmB.num_critic_for_reviews = filmA.num_critic_for_reviews;
-	 filmB.duration = filmA.duration;
-	 filmB.director_facebook_likes = filmA.director_facebook_likes;
-	 filmB.actor_3_facebook_likes = filmA.actor_3_facebook_likes;
-	 filmB.actor_2_name = strcpy(filmB.actor_2_name, filmA.actor_2_name);
-	 filmB.actor_1_facebook_likes = filmA.actor_1_facebook_likes;
-	 filmB.gross = filmA.gross;
-	 filmB.genres = strcpy(filmB.genres, filmA.genres);
-	 filmB.actor_1_name = strcpy(filmB.actor_1_name, filmA.actor_1_name);
-	 filmB.movie_title = strcpy(filmB.movie_title, filmA.movie_title);
-	 filmB.num_voted_users = filmA.num_voted_users;
-	 filmB.cast_total_facebook_likes = filmA.cast_total_facebook_likes;
-	 filmB.actor_3_name = strcpy(filmB.actor_3_name, filmA.actor_3_name);
-	 filmB.facenumber_in_poster = filmA.facenumber_in_poster;
-	 filmB.plot_keywords = strcpy(filmB.plot_keywords, filmA.plot_keywords);
-	 filmB.move_imdb_link = strcpy(filmB.move_imdb_link, filmA.move_imdb_link);
-	 filmB.num_user_for_reviews = filmA.num_user_for_reviews;
-	 filmB.language = strcpy(filmB.language, filmA.language);
-	 filmB.country = strcpy(filmB.country, filmA.country);
-	 filmB.content_rating = strcpy(filmB.content_rating, filmA.content_rating);
-	 filmB.budget = filmA.budget;
-	 filmB.title_year = filmA.title_year;
-	 filmB.actor_2_facebook_likes = filmA.actor_2_facebook_likes;
-	 filmB.imdb_score = filmA.imdb_score;
-	 filmB.aspect_ratio = filmA.aspect_ratio;
-	 filmB.movie_facebook_likes = filmA.movie_facebook_likes;
+	filmB.director_name = strcpy(filmB.director_name, filmA.director_name);
+	filmB.num_critic_for_reviews = filmA.num_critic_for_reviews;
+	filmB.duration = filmA.duration;
+	filmB.director_facebook_likes = filmA.director_facebook_likes;
+	filmB.actor_3_facebook_likes = filmA.actor_3_facebook_likes;
+	filmB.actor_2_name = strcpy(filmB.actor_2_name, filmA.actor_2_name);
+	filmB.actor_1_facebook_likes = filmA.actor_1_facebook_likes;
+	filmB.gross = filmA.gross;
+	filmB.genres = strcpy(filmB.genres, filmA.genres);
+	filmB.actor_1_name = strcpy(filmB.actor_1_name, filmA.actor_1_name);
+	filmB.movie_title = strcpy(filmB.movie_title, filmA.movie_title);
+	filmB.num_voted_users = filmA.num_voted_users;
+	filmB.cast_total_facebook_likes = filmA.cast_total_facebook_likes;
+	filmB.actor_3_name = strcpy(filmB.actor_3_name, filmA.actor_3_name);
+	filmB.facenumber_in_poster = filmA.facenumber_in_poster;
+	filmB.plot_keywords = strcpy(filmB.plot_keywords, filmA.plot_keywords);
+	filmB.move_imdb_link = strcpy(filmB.move_imdb_link, filmA.move_imdb_link);
+	filmB.num_user_for_reviews = filmA.num_user_for_reviews;
+	filmB.language = strcpy(filmB.language, filmA.language);
+	filmB.country = strcpy(filmB.country, filmA.country);
+	filmB.content_rating = strcpy(filmB.content_rating, filmA.content_rating);
+	filmB.budget = filmA.budget;
+	filmB.title_year = filmA.title_year;
+	filmB.actor_2_facebook_likes = filmA.actor_2_facebook_likes;
+	filmB.imdb_score = filmA.imdb_score;
+	filmB.aspect_ratio = filmA.aspect_ratio;
+	filmB.movie_facebook_likes = filmA.movie_facebook_likes;
 	 
-	 return filmB;
+	return filmB;
 }
