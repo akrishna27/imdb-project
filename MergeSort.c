@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Sorter.h"
 
-film* mergesort(film* array, int size){//pointer to unsorted array, size of array, column to sort by
+film* mergesort(film* array, int size, int col){//pointer to unsorted array, size of array, column to sort by
 	if(size == 1){
 		return array;
 	}
@@ -73,13 +73,29 @@ film* mergesort(film* array, int size){//pointer to unsorted array, size of arra
 		 
 		 k++;
 	 }
-	 /*
-	 arrayA = mergesort(arrayA, mid);
-	 arrayB = mergesort(arrayB, k);
+	 
+	 arrayA = mergesort(arrayA, mid, col);
+	 arrayB = mergesort(arrayB, k, col);
 	 
 	 i=0; int j=0;
 	 while(i<mid && j<k){
 		 //depending on what column we're sorting by, do things
+		 if(col == 1 || col == 2 || col == 7 || col == 10 || col == 11 || col == 12 || col == 15 || col == 17 || col == 20 || col == 21 || col == 22){
+			 //sort by string, first being NULL
+			 switch(col){
+				 case(1):{
+					 if(strcmp(arrayA.color, arrayB.color) > 0){//arrayA's val is greater
+						 
+					 }
+				 }
+			 }
+		 }else{
+			 //sort numerically
+		 }
 	 }
-	 */
+	 
+}
+
+film* filmcpy(film* filmA, film* filmB){//copy film A to film B
+	//fill this in
 }
