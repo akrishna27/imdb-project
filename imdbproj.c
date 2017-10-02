@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include<sorter.h>
+/*
 struct film{
 		char* color;				//sortby= 1
 		char* director_name;		//2
@@ -32,7 +33,7 @@ struct film{
 		double aspect_ratio;		//27
 		int movie_facebook_likes;	//28
 }film;
-
+*/
 /*
 int main(int argc, char** argv){
 	
