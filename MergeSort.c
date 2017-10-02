@@ -15,10 +15,11 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 	 int i=0; int k=0;
 	 
 	 for(i=0; i<mid; i++){//loop for filling arrayA, mid is size of A
+		 array[i] = replace_NULL_w_empty(array[i]);
 		 arrayA[i] = filmcpy(array[i], arrayA[i]);
 	 }
 	 for(k=0; i<size; i++){//loop for filling arrayB, final k is size of B
-		 
+		 array[i] = replace_NULL_w_empty(array[i]);
 		 arrayB[k] = filmcpy(array[i], arrayB[k]);
 		 
 		 k++;
@@ -476,39 +477,39 @@ film* mergesort(film* array, int size, int col){//pointer to unsorted array, siz
 }
 
 film filmcpy(film filmA, film filmB){//copy film A to film B
-	filmB.color = (char*) malloc(sizeof(filmA.color)+1);
+	filmB.color = (char*) malloc(strlen(filmA.color)+1);
 	filmB.color = strcpy(filmB.color, filmA.color);//
-	filmB.director_name = (char*) malloc(sizeof(filmA.director_name)+1);
+	filmB.director_name = (char*) malloc(strlen(filmA.director_name)+1);
 	filmB.director_name = strcpy(filmB.director_name, filmA.director_name);//
 	filmB.num_critic_for_reviews = filmA.num_critic_for_reviews;
 	filmB.duration = filmA.duration;
 	filmB.director_facebook_likes = filmA.director_facebook_likes;
 	filmB.actor_3_facebook_likes = filmA.actor_3_facebook_likes;
-	filmB.actor_2_name = (char*) malloc(sizeof(filmA.actor_2_name)+1);
+	filmB.actor_2_name = (char*) malloc(strlen(filmA.actor_2_name)+1);
 	filmB.actor_2_name = strcpy(filmB.actor_2_name, filmA.actor_2_name);//
 	filmB.actor_1_facebook_likes = filmA.actor_1_facebook_likes;
 	filmB.gross = filmA.gross;
-	filmB.genres = (char*) malloc(sizeof(filmA.genres)+1);
+	filmB.genres = (char*) malloc(strlen(filmA.genres)+1);
 	filmB.genres = strcpy(filmB.genres, filmA.genres);//
-	filmB.actor_1_name = (char*) malloc(sizeof(filmA.actor_1_name)+1);
+	filmB.actor_1_name = (char*) malloc(strlen(filmA.actor_1_name)+1);
 	filmB.actor_1_name = strcpy(filmB.actor_1_name, filmA.actor_1_name);//
-	filmB.movie_title = (char*) malloc(sizeof(filmA.movie_title)+1);
+	filmB.movie_title = (char*) malloc(strlen(filmA.movie_title)+1);
 	filmB.movie_title = strcpy(filmB.movie_title, filmA.movie_title);//
 	filmB.num_voted_users = filmA.num_voted_users;
 	filmB.cast_total_facebook_likes = filmA.cast_total_facebook_likes;
-	filmB.actor_3_name = (char*) malloc(sizeof(filmA.actor_3_name)+1);
+	filmB.actor_3_name = (char*) malloc(strlen(filmA.actor_3_name)+1);
 	filmB.actor_3_name = strcpy(filmB.actor_3_name, filmA.actor_3_name);//
 	filmB.facenumber_in_poster = filmA.facenumber_in_poster;
-	filmB.plot_keywords = (char*) malloc(sizeof(filmA.plot_keywords)+1);
+	filmB.plot_keywords = (char*) malloc(strlen(filmA.plot_keywords)+1);
 	filmB.plot_keywords = strcpy(filmB.plot_keywords, filmA.plot_keywords);//
-	filmB.move_imdb_link = (char*) malloc(sizeof(filmA.move_imdb_link)+1);
+	filmB.move_imdb_link = (char*) malloc(strlen(filmA.move_imdb_link)+1);
 	filmB.move_imdb_link = strcpy(filmB.move_imdb_link, filmA.move_imdb_link);//
 	filmB.num_user_for_reviews = filmA.num_user_for_reviews;
-	filmB.language = (char*) malloc(sizeof(filmA.language)+1);
+	filmB.language = (char*) malloc(strlen(filmA.language)+1);
 	filmB.language = strcpy(filmB.language, filmA.language);//
-	filmB.country = (char*) malloc(sizeof(filmA.country)+1);
+	filmB.country = (char*) malloc(strlen(filmA.country)+1);
 	filmB.country = strcpy(filmB.country, filmA.country);//
-	filmB.content_rating = (char*) malloc(sizeof(filmA.content_rating)+1);
+	filmB.content_rating = (char*) malloc(strlen(filmA.content_rating)+1);
 	filmB.content_rating = strcpy(filmB.content_rating, filmA.content_rating);//
 	filmB.budget = filmA.budget;
 	filmB.title_year = filmA.title_year;
@@ -536,4 +537,56 @@ void free_strings(film* array, int len){
 		free(array[i].country);
 		free(array[i].content_rating);
 	}
+}
+
+film replace_NULL_w_empty(film f){
+	if(f.color == NULL){
+		f.color = (char*) malloc(1);
+		f.color = "";
+	}
+	if(f.director_name == NULL){
+		f.director_name = (char*) malloc(1);
+		f.director_name = "";
+	}
+	if(f.actor_2_name == NULL){
+		f.actor_2_name = (char*) malloc(1);
+		f.actor_2_name = "";
+	}
+	if(f.genres == NULL){
+		f.genres = (char*) malloc(1);
+		f.genres = "";
+	}
+	if(f.actor_1_name == NULL){
+		f.actor_1_name = (char*) malloc(1);
+		f.actor_1_name = "";
+	}
+	if(f.movie_title == NULL){
+		f.movie_title = (char*) malloc(1);
+		f.movie_title = "";
+	}
+	if(f.actor_3_name == NULL){
+		f.actor_3_name = (char*) malloc(1);
+		f.actor_3_name = "";
+	}
+	if(f.plot_keywords == NULL){
+		f.plot_keywords = (char*) malloc(1);
+		f.plot_keywords = "";
+	}
+	if(f.move_imdb_link == NULL){
+		f.move_imdb_link = (char*) malloc(1);
+		f.move_imdb_link = "";
+	}
+	if(f.language == NULL){
+		f.language = (char*) malloc(1);
+		f.language = "";
+	}
+	if(f.country == NULL){
+		f.country = (char*) malloc(1);
+		f.country = "";
+	}
+	if(f.content_rating == NULL){
+		f.content_rating = (char*) malloc(1);
+		f.content_rating = "";
+	}
+	return f;
 }
