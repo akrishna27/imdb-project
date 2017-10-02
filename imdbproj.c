@@ -1,7 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include"Sorter.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "Sorter.h"
 
 int main(int argc, char** argv){
 	
@@ -9,7 +9,7 @@ int main(int argc, char** argv){
 	
 	if(strcmp("-c",argv[1])!=0){
 		printf("ERROR: Invalid Value Type\n");
-		return 1;
+		return 0;
 	}
 		sortby=0;
 	if(strcmp("color",argv[2])==0){
@@ -77,22 +77,26 @@ int main(int argc, char** argv){
 	int loop=0;
 	FILE* file=stdin;
 	char line [5000];
-	film* array=NULL;
-	array=(film*)malloc(sizeof(film)*500);
+	int a_size = 50;
+	film** array=(film**)malloc(sizeof(film*)*a_size);
+	int arrayloc = 0;
 	while(fgets(line,sizeof(line),file)!=NULL){
-		film* x=NULL;
-		x=(struct film*)malloc(sizeof(film));	//current film record being made
 		loop++;
+		printf("%d\n", loop-1);
 		if(loop==1){		//skip first line containing categories
 				continue;
 		}
+		
+		film* x=NULL;
+		x=(struct film*)malloc(sizeof(film));	//current film record being made
+		
 		
 		int assignto=0;	//determines where value will be stored
 		char* val=strtok(line,",");
 
 		while (val!=NULL){
-			
-			printf("current val is %s\n",val);
+			assignto++;
+			//printf("current val is %s\n",val);
 			
 			if(strcmp(val,"")==0){	//empty value
 				if(assignto==1){
@@ -230,8 +234,14 @@ int main(int argc, char** argv){
 					x->content_rating=val;
 				}	
 			
-			if(sortby==28){		//x is a complete film to add to the array
-				//add x
+			if(assignto==28){		//x is a complete film to add to the array
+				if((loop-1) == a_size){
+					a_size = a_size*2;
+					array = (film**)realloc(array, sizeof(film*)*a_size);
+				}
+				
+				array[arrayloc] = x;
+				arrayloc++;
 				assignto=0;
 			}
 			
@@ -243,7 +253,7 @@ int main(int argc, char** argv){
 	
 	
 	}//done reading file
-	//insert mergesort here
+	array = mergesort(array, a_size, sortby);
 	//print the sorted stuff
 	
 	return 0;

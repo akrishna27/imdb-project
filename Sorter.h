@@ -41,8 +41,8 @@ struct film{
 typedef struct film film;
 
 //Suggestion: prototype a mergesort function
-film* mergesort(film* array, int size, int col);//pointer to unsorted array, size of array, column to sort by
+film** mergesort(film** array, int size, int col);//pointer to unsorted array, size of array, column to sort by
 
-void free_strings(film* array, int len);//free string pointers for each struct when freeing an array
-film filmcpy(film filmA, film filmB);//copy a film struct function
-film replace_NULL_w_empty(film f);//self explanitory
+void free_strings(film** array, int len);//free string pointers for each struct when freeing an array
+film* filmcpy(film* filmA, film* filmB);//copy a film struct function
+film* replace_NULL_w_empty(film* f);//self explanitory
