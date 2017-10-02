@@ -26,7 +26,7 @@ struct film{
 		char* actor_3_name;		
 		int facenumber_in_poster;
 		char* plot_keywords;
-		char* move_imdb_link;
+		char* movie_imdb_link;
 		int num_user_for_reviews;
 		char* language;
 		char* country;
