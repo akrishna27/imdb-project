@@ -77,6 +77,8 @@ int main(int argc, char** argv){
 	int loop=0;
 	FILE* file=stdin;
 	char line [5000];
+	film* array=NULL;
+	array=(film*)malloc(sizeof(film)*500);
 	while(fgets(line,sizeof(line),file)!=NULL){
 		film* x=NULL;
 		x=(struct film*)malloc(sizeof(film));	//current film record being made
