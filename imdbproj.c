@@ -3,6 +3,8 @@
 #include <string.h>
 #include "Sorter.h"
 
+
+
 int main(int argc, char** argv){
 	
 	int sortby;
@@ -273,4 +275,30 @@ int main(int argc, char** argv){
 	//print the sorted stuff
 	
 	return 0;
+}
+
+
+char* strtok_fix (char* str, char const * delim){
+	static char * src=NULL;
+	char*p=0;
+	char*ret=0;
+	
+	if(str!=NULL){
+			src=str;
+	}
+	
+	if(src==NULL){
+			return NULL;
+	}
+	
+	if((p=strpbrk(src,delim))!=NULL){
+			*p=0;
+			ret=src;
+			src=++p;
+	}else if (*src){
+			ret=src;
+			src=NULL;
+	}
+	
+	return ret;
 }
