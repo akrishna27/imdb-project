@@ -97,6 +97,18 @@ int main(int argc, char** argv){
 		while (val!=NULL){
 			assignto++;
 			//printf("current val is %s\n",val);
+			if(assignto == 1 || assignto == 2 || assignto == 7 || assignto == 10 || assignto == 11 || assignto == 12 || assignto == 15 || assignto == 17 || assignto == 18 || assignto == 20 || assignto == 21 || assignto == 22){
+				while(val[0] == ' '){
+					val++;
+				}
+			}
+
+			if(assignto==1){
+				if(strcmp(val,"Color")!=0 && strcmp(val,"color")!=0 && strcmp(val, "Black and White")!=0){
+					x->color="";
+					continue;
+				}
+			}
 			
 			if(strcmp(val,"")==0){	//empty value
 				if(assignto==1){
@@ -156,8 +168,8 @@ int main(int argc, char** argv){
 				}else if(assignto==28){
 					x->movie_facebook_likes=0;
 				}
-				val=strtok(NULL,",");	//move on to next token
-				continue;		//jump to next token
+				//val=strtok(NULL,",");	//move on to next token
+				//continue;		//jump to next token
 			}else if((assignto==3)|(assignto==4)|(assignto==5)|(assignto==6)|(assignto==8)|(assignto==9)|(assignto==13)|(assignto==14)|(assignto==16)|(assignto==19)|(assignto==23)|(assignto==24)|(assignto==25)|(assignto==28)){	//convert to int
 				int numval=atoi(val);
 				if(assignto==3){
@@ -189,8 +201,8 @@ int main(int argc, char** argv){
 				}else{
 					x->movie_facebook_likes=numval;
 				}	
-				val=strtok(NULL,",");	//move on to next token
-				continue;	//jump to next token
+				//val=strtok(NULL,",");	//move on to next token
+				//continue;	//jump to next token
 										
 			}else if((assignto==26)|(assignto==27)){		//convert to double
 				if(assignto==26){
@@ -198,14 +210,17 @@ int main(int argc, char** argv){
 				}else{
 					x->aspect_ratio=atof(val);
 				}
-				val=strtok(NULL,",");	//move on to next token
-				continue;	//jump to next token
+				//val=strtok(NULL,",");	//move on to next token
+				//continue;	//jump to next token
 			}
 			
 			if(val[0]=='"'){	//opening quotation, check for closing quote
-				while(val[strlen(val)-1]!='"'){	//lacks a closing quote
-					strcat(val,strtok(NULL,","));	//concatenates next token to current token
-				}
+				//while(val[strlen(val)-1]!='"'){	//lacks a closing quote
+				char* temp = strtok(NULL,",");
+				char* teststr = (char*) malloc(strlen(temp)+1);
+				teststr = strcpy(teststr, temp);
+				strcat(val,teststr);	//concatenates next token to current token
+				//}
 			}
 				//enter values if token is a string
 				if(assignto==1){
@@ -239,8 +254,9 @@ int main(int argc, char** argv){
 					a_size = a_size*2;
 					array = (film**)realloc(array, sizeof(film*)*a_size);
 				}
-				
-				array[arrayloc] = x;
+				array[arrayloc] = (film*) malloc(sizeof(film));
+				array[arrayloc] = filmcpy(x, array[arrayloc]);
+				free(x);
 				arrayloc++;
 				assignto=0;
 			}
