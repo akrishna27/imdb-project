@@ -84,6 +84,9 @@ int main(int argc, char** argv){
 	int arrayloc = 0;
 	while(fgets(line,sizeof(line),file)!=NULL){
 		loop++;
+		if((loop-1)==954){
+			char a = 'a';
+		}
 		printf("%d\n", loop-1);
 		if(loop==1){		//skip first line containing categories
 				continue;
@@ -94,7 +97,7 @@ int main(int argc, char** argv){
 		
 		
 		int assignto=0;	//determines where value will be stored
-		char* val=strtok(line,",");
+		char* val=strtok_fix(line,",");
 
 		while (val!=NULL){
 			assignto++;
@@ -105,12 +108,12 @@ int main(int argc, char** argv){
 				}
 			}
 
-			if(assignto==1){
-				if(strcmp(val,"Color")!=0 && strcmp(val,"color")!=0 && strcmp(val, "Black and White")!=0){
-					x->color="";
-					continue;
-				}
-			}
+			//if(assignto==1){
+				//if(strcmp(val,"Color")!=0 && strcmp(val,"color")!=0 && strcmp(val, "Black and White")!=0){
+					//x->color="";
+					//continue;
+				//}
+			//}
 			
 			if(strcmp(val,"")==0){	//empty value
 				if(assignto==1){
@@ -218,7 +221,7 @@ int main(int argc, char** argv){
 			
 			if(val[0]=='"'){	//opening quotation, check for closing quote
 				//while(val[strlen(val)-1]!='"'){	//lacks a closing quote
-				char* temp = strtok(NULL,",");
+				char* temp = strtok_fix(NULL,",");
 				char* teststr = (char*) malloc(strlen(temp)+1);
 				teststr = strcpy(teststr, temp);
 				strcat(val,teststr);	//concatenates next token to current token
@@ -264,7 +267,7 @@ int main(int argc, char** argv){
 			}
 			
 			
-			val=strtok(NULL,",");	//move on to next token
+			val=strtok_fix(NULL,",");	//move on to next token
 
 		
 		}
