@@ -220,12 +220,12 @@ int main(int argc, char** argv){
 			}
 			
 			if(val[0]=='"'){	//opening quotation, check for closing quote
-				//while(val[strlen(val)-1]!='"'){	//lacks a closing quote
-				char* temp = strtok_fix(NULL,"\"");
-				char* teststr = (char*) malloc(strlen(temp)+1);
-				teststr = strcpy(teststr, temp);
-				strcat(val,teststr);	//concatenates next token to current token
-				//}
+				while(val[strlen(val)-1]!='"'){	//lacks a closing quote
+					char* temp = strtok_fix(NULL,",");
+					char* teststr = (char*) malloc(strlen(temp)+1);
+					teststr = strcpy(teststr, temp);
+					strcat(val,teststr);	//concatenates next token to current token
+				}
 			}
 				//enter values if token is a string
 				if(assignto==1){

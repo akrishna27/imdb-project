@@ -16,10 +16,12 @@ film** mergesort(film** array, int size, int col){//pointer to unsorted array, s
 	 
 	 for(i=0; i<mid; i++){//loop for filling arrayA, mid is size of A
 		 array[i] = replace_NULL_w_empty(array[i]);
+		 arrayA[i] = replace_NULL_w_empty(arrayA[i]);
 		 arrayA[i] = filmcpy(array[i], arrayA[i]);
 	 }
 	 for(k=0; i<size; i++){//loop for filling arrayB, final k is size of B
 		 array[i] = replace_NULL_w_empty(array[i]);
+		 arrayB[k] = replace_NULL_w_empty(arrayB[k]);
 		 arrayB[k] = filmcpy(array[i], arrayB[k]);
 		 
 		 k++;
