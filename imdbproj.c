@@ -84,10 +84,7 @@ int main(int argc, char** argv){
 	int arrayloc = 0;
 	while(fgets(line,sizeof(line),file)!=NULL){
 		loop++;
-		if((loop-1)==954){
-			char a = 'a';
-		}
-		printf("%d\n", loop-1);
+		//printf("%d\n", loop-1);
 		if(loop==1){		//skip first line containing categories
 				continue;
 		}
@@ -274,7 +271,8 @@ int main(int argc, char** argv){
 	
 	
 	}//done reading file
-	array = mergesort(array, a_size, sortby);
+	array = mergesort(array, arrayloc, sortby);
+	printf("done!\n");
 	//print the sorted stuff
 	
 	return 0;
