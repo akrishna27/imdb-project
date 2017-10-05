@@ -272,7 +272,7 @@ int main(int argc, char** argv){
 	
 	}//done reading file
 	array = mergesort(array, arrayloc, sortby);
-	printf("done!\n");
+	//printf("done!\n");
 	//print the sorted stuff
 	
 	return 0;
